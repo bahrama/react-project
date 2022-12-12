@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState , useRef , useEffect} from "react";
 import Button from "../Button/Button";
 const Contact = () =>{
     //hooks                     //////default
@@ -6,6 +6,7 @@ const Contact = () =>{
     const [description,setDescription] = useState('');
     const [email,setEmail] = useState('');
     const [errors,setErrors] = useState('');
+    const inputSubjctRef = useRef(null);
     const handleEvent = (event) =>{
         console.log(event.target.value);
     };
@@ -42,6 +43,9 @@ const Contact = () =>{
 
     }
 
+    useEffect(() =>{
+        inputSubjctRef.current.focus();
+    } , [])
 
     return(
         <div className="con">
@@ -59,7 +63,7 @@ const Contact = () =>{
                 <input onChange={handleFamily} type="text" placeholder="family"/>
             </div>
             <div className="elem">
-                <input onChange={handleEmail} type="text" placeholder="email"/>
+                <input ref={inputSubjctRef} onChange={handleEmail} type="text" placeholder="email"/>
                 <span>{errors.email}</span>
             </div>
             <div className="elem">
